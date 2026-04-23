@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <style>
+    body {
+    margin: 0;
+    font-family: Arial;
+    background: #0f172a;
+    color: white;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    background: #1e293b;
+}
+
+header input {
+    padding: 8px;
+    border-radius: 5px;
+    border: none;
+}
+
+.hero {
+    text-align: center;
+    padding: 40px;
+    background: url('https://via.placeholder.com/1200x300') no-repeat center;
+    background-size: cover;
+}
+
+.anime-container {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    flex-wrap: wrap;
+}
+
+.anime-card {
+    width: 200px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.anime-card:hover {
+    transform: scale(1.1);
+}
+
+.anime-card img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.player {
+    padding: 20px;
+    text-align: center;
+}
+
+video {
+    width: 80%;
+    border-radius: 10px;
+}
+  </style>
+    <meta charset="UTF-8">
+    <title>AnimeWorld</title>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<header>
+    <h1>AnimeWorld</h1>
+    <input type="text" id="search" placeholder="Search anime...">
+</header>
+
+<!-- HERO -->
+<section class="hero">
+    <h2>Watch Your Favorite Anime</h2>
+</section>
+
+<!-- ANIME LIST -->
+<section class="anime-container" id="animeList">
+
+    <div class="anime-card" onclick="playAnime('https://www.w3schools.com/html/mov_bbb.mp4')">
+        <img src="https://via.placeholder.com/200x300" alt="">
+        <h3>Naruto</h3>
+    </div>
+
+    <div class="anime-card" onclick="playAnime('https://www.w3schools.com/html/movie.mp4')">
+        <img src="https://via.placeholder.com/200x300" alt="">
+        <h3>Attack on Titan</h3>
+    </div>
+
+    <div class="anime-card" onclick="playAnime('https://www.w3schools.com/html/mov_bbb.mp4')">
+        <img src="https://via.placeholder.com/200x300" alt="">
+        <h3>One Piece</h3>
+    </div>
+
+</section>
+
+<!-- VIDEO PLAYER -->
+<section class="player">
+    <video id="videoPlayer" controls>
+        <source src="" type="video/mp4">
+    </video>
+</section>
+
+<script>
+  function playAnime(videoUrl) {
+    const player = document.getElementById("videoPlayer");
+    player.src = videoUrl;
+    player.play();
+}
+
+// SEARCH FUNCTION
+document.getElementById("search").addEventListener("keyup", function () {
+    let filter = this.value.toLowerCase();
+    let cards = document.querySelectorAll(".anime-card");
+
+    cards.forEach(card => {
+        let title = card.innerText.toLowerCase();
+        card.style.display = title.includes(filter) ? "block" : "none";
+    });
+});
+</script>
+</body>
+</html>
